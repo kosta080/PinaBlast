@@ -1,0 +1,18 @@
+﻿Documentation:
+
+Design pattern : MVVM
+Binding technique : ServiceLocator class 
+Applied principle : IOC 
+
+RequireReferenceAttribute
+this is a serialized field attribute that is marking the field as [RequireReference]
+which means that if the field is empty an icon will be drawn in unity inspector 
+and in the hierarchy making it easy to spot missing references 
+and avoid discovering missing references in playmode
+
+ServiceLocator
+So here comes the controversial part: i used DI in non monoBehaviour classes via constructor
+and all the monoBehaviour classes are resolving their dependency on Awake via ServiceLocator
+
+ReactiveProperty
+nice way to make the view update when value in viewModel is changes
