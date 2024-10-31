@@ -16,11 +16,13 @@ namespace Kor.Balance
 
         public void AddCash(int amount)
         {
+            if (amount == 0) return;
             BalanceCash.Value += amount;
         }
 
         public void AddEnergy(int amount)
         {
+            if (amount == 0) return;
             BalanceEnergy.Value += amount;
         }
     }

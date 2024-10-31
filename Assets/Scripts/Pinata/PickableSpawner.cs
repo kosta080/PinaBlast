@@ -7,7 +7,9 @@ namespace Kosta
     public class PickableSpawner : MonoBehaviour
     {
         [SerializeField] private GameObject _coinPrefab;
+        [SerializeField] private GameObject _EnergyPrefab;
         [SerializeField] private GameObject _heartPrefab;
+        [SerializeField] private GameObject _bombPrefab;
 
         private Dictionary<SpawnType, GameObject> _prefabsMap;
 
@@ -16,13 +18,15 @@ namespace Kosta
             _prefabsMap = new Dictionary<SpawnType, GameObject>
             {
                 { SpawnType.Coin, _coinPrefab },
-                { SpawnType.Heart, _heartPrefab }
+                { SpawnType.Energy, _EnergyPrefab },
+                { SpawnType.Heart, _heartPrefab },
+                { SpawnType.Bomb, _bombPrefab }
             };
         }
 
         public enum SpawnType
         {
-            Random, Coin, Heart
+            Random, Energy, Coin, Heart, Bomb
         }
 
         public void SpawnPickable(SpawnType spawnType)
@@ -34,9 +38,31 @@ namespace Kosta
 
         private GameObject GenerateRandomSpawn()
         {
-            int randomIndex = Random.Range(0, _prefabsMap.Count);
-            SpawnType randomSpawnType = (SpawnType)randomIndex+1;
-            return _prefabsMap[randomSpawnType];
+            float totalWeight = 0f;
+            List<float> cumulativeWeights = new List<float>();
+            int index = 1;
+            foreach (var item in _prefabsMap)
+            {
+                float weight = 1f / index;
+                totalWeight += weight;
+                cumulativeWeights.Add(totalWeight);
+                index++;
+            }
+            
+            float randomValue = Random.Range(0f, totalWeight);
+            
+            int selectedIndex = 0;
+            for (int i = 0; i < cumulativeWeights.Count; i++)
+            {
+                if (randomValue <= cumulativeWeights[i])
+                {
+                    selectedIndex = i;
+                    break;
+                }
+            }
+            
+            SpawnType selectedType = (SpawnType)(selectedIndex + 1);
+            return _prefabsMap[selectedType];
         }
 
         private Vector2 GenerateRandomDirection()

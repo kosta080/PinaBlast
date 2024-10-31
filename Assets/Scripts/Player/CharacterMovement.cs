@@ -2,6 +2,7 @@ using Infra;
 using Kosta.Controls;
 using UnityEngine;
 using Kor.Infra;
+using Kosta.Items;
 
 namespace Kosta.Player
 {
@@ -12,7 +13,9 @@ namespace Kosta.Player
         [SerializeField] private float _runSpeed = 5f;
         [SerializeField] private float _jumpForce = 5f;
         [SerializeField] public Collider2D _feetCollider;
-        [SerializeField] private float _maxVerticalSpeed = 10f; 
+        [SerializeField] private float _maxVerticalSpeed = 10f;
+        private PickingManager _pickingManager;
+        
         
         private bool _isGrounded = true;
 
@@ -27,6 +30,7 @@ namespace Kosta.Player
         private void Start()
         {
             _playerController = ServiceLocator.Resolve<PlayerController>();
+            _pickingManager = ServiceLocator.Resolve<PickingManager>();
         }
         
         void Update()
@@ -61,6 +65,7 @@ namespace Kosta.Player
 
             if (other.gameObject.CompareTag(GlobalValues.TagPickable))
             {
+                _pickingManager.HandlePicking(other.collider);
                 Destroy(other.gameObject);
             }
         }
