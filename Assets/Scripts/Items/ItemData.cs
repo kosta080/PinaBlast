@@ -7,6 +7,7 @@ namespace Kosta.Items
     {
         public int CashAmount;
         public int EnergyAmount;
-        public int BombsAmount;
+        
+        public float DecayTime;
     }
 }

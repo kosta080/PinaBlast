@@ -6,7 +6,7 @@ namespace Kor.Infra
     {
         private static readonly Dictionary<string, object> Services = new();
 
-        public static void Register<T>(T service, bool asSingle = false)
+        public static T Register<T>(T service, bool asSingle = false)
         {
             var key = typeof(T).Name;
 
@@ -21,6 +21,8 @@ namespace Kor.Infra
             {
                 Services[key] = service;
             }
+
+            return service;
         }
 
         public static T Resolve<T>()

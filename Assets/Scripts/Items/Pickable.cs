@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 namespace Kosta.Items
 {
@@ -9,6 +10,17 @@ namespace Kosta.Items
         public PickableData GetPickableData()
         {
             return PickableData;
+        }
+
+        private void Start()
+        {
+            StartCoroutine(Decay());
+        }
+
+        private IEnumerator Decay()
+        {
+            yield return new WaitForSeconds(1.5f);
+            Destroy(gameObject);
         }
     }
 }

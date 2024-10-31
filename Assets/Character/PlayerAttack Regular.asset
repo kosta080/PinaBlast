@@ -16,6 +16,6 @@ MonoBehaviour:
   ImpactWallEffect: {fileID: 725748389856807714, guid: f0037a1147efcf247be7ae774b4c9ab9, type: 3}
   EffectScaleBig: {x: 0.35, y: 0.35, z: 0.35}
   EffectScaleSmall: {x: 0.18, y: 0.18, z: 0.18}
-  ShockForce: 29
+  ShockForce: 40
   Damage: 10
   CooldownTime: 0.5

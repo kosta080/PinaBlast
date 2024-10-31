@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CashAmount: 0
   EnergyAmount: 0
-  BombsAmount: 1
+  DecayTime: 1
