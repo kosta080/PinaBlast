@@ -1,31 +1,37 @@
 ﻿using Kor.Infra;
+using Kosta.Round;
 using UnityEngine;
 
 namespace Kosta
 {
     public class PinataHealth
     {
-        public int HealthMax = 500;
+        public int HealthMax = 80;
         public ReactiveProperty<int> HealthPoints = new();
 
+        private EventManager _eventManager;
         public PinataHealth()
         {
+            _eventManager = ServiceLocator.Resolve<EventManager>();
             HealthPoints.Value = HealthMax;
+
+            _eventManager.OnRestartRound += ResetHealth;
         }
         
         public void ReduceHealth(int value)
         {
-            Debug.Log($"ReduceHealth: {value}");    
-            Debug.Log($"HP: {HealthPoints.Value}");    
             if (HealthPoints.Value > 0)
             {
                 HealthPoints.Value -= value;
+                return;
             }
-            else
+
+            if (_eventManager == null)
             {
-                Debug.Log("Health is 0");
+                _eventManager = ServiceLocator.Resolve<EventManager>();
             }
-            Debug.Log($"HP: {HealthPoints.Value}"); 
+            Debug.Log("Health is 0");
+            _eventManager.OnPinataExploded?.Invoke();
         }
 
         private void ResetHealth()

@@ -11,9 +11,9 @@ namespace Kosta
         [SerializeField] private PickableSpawner _pickableSpawner;
 
         private PinataHealth _pinataHealth;
-        private void Awake()
+        private void Start()
         {
-            _pinataHealth = ServiceLocator.Register(new PinataHealth());
+            _pinataHealth = ServiceLocator.Resolve<PinataHealth>();
         }
 
         private void OnCollisionEnter2D(Collision2D other)

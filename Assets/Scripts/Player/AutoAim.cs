@@ -24,10 +24,8 @@ namespace Kosta.Player
                 _aimTarget.position.x - transform.position.x) * Mathf.Rad2Deg;
             if (flipAim)
             {
-                Debug.Log(Time.time);
                 angle = Mathf.Atan2(transform.position.y - _aimTarget.position.y,
-                    transform.position.x - _aimTarget.position.x) * Mathf.Rad2Deg;
-                angle *= -1;
+                    transform.position.x - _aimTarget.position.x) * Mathf.Rad2Deg * -1;
             }
             transform.localRotation = Quaternion.Euler(0f, 0f, angle);
         }

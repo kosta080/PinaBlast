@@ -1,20 +1,31 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
+using Kor.Infra;
 using UnityEngine;
 
 namespace Kosta.Timer
 {
     public class TimerController
     {
-        public Action OnTimeIsUp;
-        
         private float _roundTimeSeconds = 20f;
         private float _msLeft;
         private bool _isRunning;
         
         private const int RefreshRateMs = 16;
-
         
+        private EventManager _eventManager;
+        public TimerController()
+        {
+            _eventManager = ServiceLocator.Resolve<EventManager>();
+            _eventManager.OnRestartRound += RestartRound;
+            _eventManager.OnPinataExploded += StopTimer;
+        }
+
+        private void RestartRound()
+        {
+            ResetTimer();
+            StartTimer();
+        }
+
         public void StartTimer()
         {
             if (_isRunning) return;
@@ -37,8 +48,8 @@ namespace Kosta.Timer
                 if (_msLeft <= 0)
                 {
                     _msLeft = 0;
-                    _isRunning = false;
-                    OnTimeIsUp?.Invoke();
+                    StopTimer();
+                    _eventManager.OnTimeIsUp?.Invoke();
                 }
             }
         }
