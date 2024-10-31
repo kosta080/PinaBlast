@@ -48,6 +48,7 @@ namespace Kosta.Player
                 TryShoot();
                 return;
             }
+         
             ResetDotsColor();
         }
 
@@ -61,7 +62,6 @@ namespace Kosta.Player
         private void TryShoot()
         {
             if (_cooling) return;
-
             SetDotsColor(Color.red);
             RaycastShot();
         }

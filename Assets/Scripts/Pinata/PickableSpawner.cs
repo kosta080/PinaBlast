@@ -1,6 +1,6 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace Kosta
 {
@@ -8,10 +8,12 @@ namespace Kosta
     {
         [SerializeField] private GameObject _coinPrefab;
         [SerializeField] private GameObject _EnergyPrefab;
-        [SerializeField] private GameObject _heartPrefab;
         [SerializeField] private GameObject _bombPrefab;
 
         private Dictionary<SpawnType, GameObject> _prefabsMap;
+        
+        private int _coinSpawnCount = 0;
+        private const int CoinSpawnLimit = 5;
 
         private void Awake()
         {
@@ -19,14 +21,12 @@ namespace Kosta
             {
                 { SpawnType.Coin, _coinPrefab },
                 { SpawnType.Energy, _EnergyPrefab },
-                { SpawnType.Heart, _heartPrefab },
-                { SpawnType.Bomb, _bombPrefab }
             };
         }
 
         public enum SpawnType
         {
-            Random, Energy, Coin, Heart, Bomb
+            Random, Energy, Coin
         }
 
         public void SpawnPickable(SpawnType spawnType)
@@ -35,34 +35,23 @@ namespace Kosta
             var spawnedObject = Instantiate(prefab, transform.position, Quaternion.identity);
             spawnedObject.GetComponent<Rigidbody2D>().AddForce(GenerateRandomDirection(), ForceMode2D.Impulse);
         }
-
+        
+        // spawning 5 Coins and then spawning Energy with 50% chance otherwise spawning Coin.
         private GameObject GenerateRandomSpawn()
         {
-            float totalWeight = 0f;
-            List<float> cumulativeWeights = new List<float>();
-            int index = 1;
-            foreach (var item in _prefabsMap)
+            if (_coinSpawnCount < CoinSpawnLimit)
             {
-                float weight = 1f / index;
-                totalWeight += weight;
-                cumulativeWeights.Add(totalWeight);
-                index++;
+                _coinSpawnCount++;
+                return _prefabsMap[SpawnType.Coin];
             }
-            
-            float randomValue = Random.Range(0f, totalWeight);
-            
-            int selectedIndex = 0;
-            for (int i = 0; i < cumulativeWeights.Count; i++)
+            _coinSpawnCount = 0;
+
+            bool spawnEnergy = Random.value < 0.5;
+            if (spawnEnergy)
             {
-                if (randomValue <= cumulativeWeights[i])
-                {
-                    selectedIndex = i;
-                    break;
-                }
+                return _prefabsMap[SpawnType.Energy];
             }
-            
-            SpawnType selectedType = (SpawnType)(selectedIndex + 1);
-            return _prefabsMap[selectedType];
+            return _prefabsMap[SpawnType.Coin];
         }
 
         private Vector2 GenerateRandomDirection()
