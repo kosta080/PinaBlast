@@ -1,3 +1,4 @@
+using System;
 using Infra;
 using Kosta.Controls;
 using UnityEngine;
@@ -34,8 +35,8 @@ namespace Kosta.Player
             _pickingManager = ServiceLocator.Resolve<PickingManager>();
             _eventManager = ServiceLocator.Resolve<EventManager>();
 
-            _eventManager.OnFinalSpawnFinished += () => { _movementAllowed = false;};
-            _eventManager.OnRestartRound += () => { _movementAllowed = true;};
+            _eventManager.OnFinalSpawnFinished += DisableMovement;
+            _eventManager.OnRestartRound += EnableMovement;
         }
         
         void Update()
@@ -107,6 +108,22 @@ namespace Kosta.Player
             if (_currentAnimation == animation) return;
             _animator.SetTrigger(animation.ToString());
             _currentAnimation = animation;
+        }
+        
+        private void OnDestroy()
+        {
+            _eventManager.OnFinalSpawnFinished -= DisableMovement;
+            _eventManager.OnRestartRound -= EnableMovement;
+        }
+
+        private void EnableMovement()
+        {
+            _movementAllowed = true;
+        }
+
+        private void DisableMovement()
+        {
+            _movementAllowed = false;
         }
     }
 }

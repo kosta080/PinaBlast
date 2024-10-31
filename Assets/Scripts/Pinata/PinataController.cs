@@ -48,6 +48,7 @@ namespace Kosta
             _pinataAnimator.SetTrigger(PinataResetAnimation);
         }
 
+        [ContextMenu("PinataExploadAnimation")]
         private void OnPinataExploded()
         {
             _pinataAnimator.SetTrigger(PinataExploadAnimation);

@@ -12,7 +12,6 @@ namespace Kosta.Controls
         [SerializeField] private Button _buttonRight;
         [SerializeField] private Button _buttonLeft;
         [SerializeField] private Button _buttonFire;
-        [SerializeField] private Button _buttonFireBomb;
         
         private PlayerController _playerController;
 
@@ -22,7 +21,7 @@ namespace Kosta.Controls
             AddButtonListeners(_buttonRight, KeyCode.RightArrow);
             AddButtonListeners(_buttonLeft, KeyCode.LeftArrow);
             AddButtonListeners(_buttonFire, KeyCode.LeftControl);
-            AddButtonListeners(_buttonFireBomb, KeyCode.LeftAlt);
+   
             _playerController = ServiceLocator.Resolve<PlayerController>();
         }
 

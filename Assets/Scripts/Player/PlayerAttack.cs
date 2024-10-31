@@ -1,9 +1,9 @@
+using System;
 using System.Collections;
 using Infra;
 using Kosta.Controls;
 using UnityEngine;
 using Kosta.Infra;
-using UnityEngine.Serialization;
 
 namespace Kosta.Player
 {
@@ -18,6 +18,7 @@ namespace Kosta.Player
 
         private SpriteRenderer[] _dotSprites;
         private bool _cooling = false;
+        private bool _buttonReleased = true;
 
         private Vector3 _characterScaleOriginal;
         private Vector3 _characterScaleFlip;
@@ -44,8 +45,9 @@ namespace Kosta.Player
             _playerController = ServiceLocator.Resolve<PlayerController>();
             _eventManager = ServiceLocator.Resolve<EventManager>();
 
-            _eventManager.OnTimeIsUp += () => { _attackAllowed = false; };
-            _eventManager.OnRestartRound += () => { _attackAllowed = true; };
+            _eventManager.OnTimeIsUp += DisableAttack;
+            _eventManager.OnPinataExploded += DisableAttack;
+            _eventManager.OnRestartRound += EnableAttack;
         }
 
         private void Update()
@@ -54,8 +56,11 @@ namespace Kosta.Player
             if (_playerController.IsKeyDown(KeyCode.LeftControl))
             {
                 TryShoot();
+                _buttonReleased = false;
                 return;
             }
+
+            _buttonReleased = true;
          
             ResetDotsColor();
         }
@@ -69,7 +74,7 @@ namespace Kosta.Player
 
         private void TryShoot()
         {
-            if (_cooling || !_attackAllowed) return;
+            if (_cooling || !_attackAllowed || !_buttonReleased) return;
             SetDotsColor(Color.red);
             RaycastShot();
         }
@@ -126,6 +131,23 @@ namespace Kosta.Player
         {
             var impactEffect = Instantiate(prefab, position, Quaternion.identity, _explosionsContainer);
             impactEffect.transform.localScale = isBig ? playerAttackSpecs.EffectScaleBig : playerAttackSpecs.EffectScaleSmall;
+        }
+        
+        private void OnDestroy()
+        {
+            _eventManager.OnTimeIsUp -= DisableAttack;
+            _eventManager.OnPinataExploded -= DisableAttack;
+            _eventManager.OnRestartRound -= EnableAttack;
+        }
+
+        private void EnableAttack()
+        {
+            _attackAllowed = true;
+        }
+        
+        private void DisableAttack()
+        {
+            _attackAllowed = false;
         }
     }
 }
