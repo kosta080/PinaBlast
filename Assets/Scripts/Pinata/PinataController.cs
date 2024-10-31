@@ -9,11 +9,21 @@ namespace Kosta
         
         [SerializeField] private Rigidbody2D _rigidbody2D;
         [SerializeField] private PickableSpawner _pickableSpawner;
+        [SerializeField] private Animator _pinataAnimator;
 
         private PinataHealth _pinataHealth;
+        private EventManager _eventManager;
+        
+        private string PinataResetAnimation = "Reset";
+        private string PinataExploadAnimation = "Expload";
+
         private void Start()
         {
             _pinataHealth = ServiceLocator.Resolve<PinataHealth>();
+            _eventManager = ServiceLocator.Resolve<EventManager>();
+
+            _eventManager.OnPinataExploded += OnPinataExploded;
+            _eventManager.OnRestartRound += OnPinataRestart;
         }
 
         private void OnCollisionEnter2D(Collision2D other)
@@ -30,6 +40,17 @@ namespace Kosta
             _rigidbody2D.AddForce(force, ForceMode2D.Impulse);
             _pickableSpawner.SpawnPickable(PickableSpawner.SpawnType.Random);
             _pinataHealth.ReduceHealth(damage);
+        }
+        
+        private void OnPinataRestart()
+        {
+            
+            _pinataAnimator.SetTrigger(PinataResetAnimation);
+        }
+
+        private void OnPinataExploded()
+        {
+            _pinataAnimator.SetTrigger(PinataExploadAnimation);
         }
     }
 

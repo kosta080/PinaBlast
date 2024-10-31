@@ -6,7 +6,7 @@ using Kosta.Items;
 
 namespace Kosta.Player
 {
-    public class CharacterMovement : MonoBehaviour
+    public class PlayerMovement : MonoBehaviour
     {
         [SerializeField] private Rigidbody2D _rigidbody;
         [SerializeField] private Animator _animator;

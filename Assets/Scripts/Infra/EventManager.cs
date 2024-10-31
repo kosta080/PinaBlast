@@ -9,6 +9,7 @@ namespace Kosta.Infra
         public Action OnTimeIsUp;
         public Action OnPinataExploded;
         public Action OnRestartRound;
+        public Action OnFinalSpawnFinished;
 
         /*
         public void TriggerCollisionWithObject(string message)

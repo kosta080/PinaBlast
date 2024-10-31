@@ -1,4 +1,6 @@
+using System.Collections;
 using System.Collections.Generic;
+using Kosta.Infra;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -14,6 +16,7 @@ namespace Kosta
         
         private int _coinSpawnCount = 0;
         private const int CoinSpawnLimit = 5;
+        EventManager _eventManager;
 
         private void Awake()
         {
@@ -22,6 +25,18 @@ namespace Kosta
                 { SpawnType.Coin, _coinPrefab },
                 { SpawnType.Energy, _EnergyPrefab },
             };
+        }
+        
+        
+        private void Start()
+        {
+            _eventManager = ServiceLocator.Resolve<EventManager>();
+            _eventManager.OnPinataExploded += OnPinataExploded;
+        }
+
+        private void OnPinataExploded()
+        {
+            StartCoroutine(StartFinalSpawnRain());
         }
 
         public enum SpawnType
@@ -59,6 +74,20 @@ namespace Kosta
             int randomIndex = Random.Range(0, 2);
             float randomForce = Random.Range(0f, 3.5f);
             return randomIndex == 0 ? Vector2.left * randomForce : Vector2.right * randomForce;
+        }
+
+        private IEnumerator StartFinalSpawnRain()
+        {
+            float finalSpawnTime = 0;
+            float finalSpawnMax = 5;
+            
+            while (finalSpawnTime < finalSpawnMax)
+            {
+                SpawnPickable(SpawnType.Coin);
+                yield return new WaitForSeconds(0.1f);
+                finalSpawnTime += 0.1f;
+            }
+            _eventManager.OnFinalSpawnFinished?.Invoke();
         }
     }
 }

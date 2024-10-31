@@ -6,7 +6,7 @@ namespace Kosta.Timer
 {
     public class TimerController
     {
-        private float _roundTimeSeconds = 20f;
+        private float _roundTimeSeconds = 30f;
         private float _msLeft;
         private bool _isRunning;
         

@@ -995,7 +995,7 @@ MonoBehaviour:
   _characterRoot: {fileID: 3189518943476195603}
   _bulletAnimator: {fileID: 5661457470106391137}
   _explosionsContainer: {fileID: 0}
-  _playerAttack: {fileID: 11400000, guid: e85aab554d9fc924b8b39c43a9644139, type: 2}
+  playerAttackSpecs: {fileID: 11400000, guid: e85aab554d9fc924b8b39c43a9644139, type: 2}
 --- !u!95 &7679910054884329595
 Animator:
   serializedVersion: 5

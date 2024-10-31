@@ -20,8 +20,9 @@ namespace Kosta.UI
             _eventManager = ServiceLocator.Resolve<EventManager>();
 
             _eventManager.OnTimeIsUp += ShowTimeIsUpPopup;
-            _eventManager.OnPinataExploded += ShowScorePopup;
+            //_eventManager.OnPinataExploded += ShowScorePopup;
             _eventManager.OnRestartRound += CloseActivePopup;
+            _eventManager.OnFinalSpawnFinished += ShowScorePopup;
 
             ShowTutorialPopup();
         }

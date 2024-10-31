@@ -6,7 +6,7 @@ namespace Kosta
 {
     public class PinataHealth
     {
-        public int HealthMax = 80;
+        public int HealthMax = 300;
         public ReactiveProperty<int> HealthPoints = new();
 
         private EventManager _eventManager;

@@ -19,7 +19,6 @@ namespace Kosta
 
         private void OnHealthChanged(int newValue)
         {
-            Debug.Log($"OnHealthChanged: {newValue}");
             float healthPercent = newValue / (float)_pinataHealth.HealthMax;
             _healthImage.fillAmount = healthPercent;
             _healthSliderText.text = newValue.ToString();
