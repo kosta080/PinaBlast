@@ -22,10 +22,13 @@ namespace Kosta.Player
         private Vector3 _characterScaleOriginal;
         private Vector3 _characterScaleFlip;
         private PlayerController _playerController;
+        private bool _attackAllowed = true;
         
         private const string ShootAnimationName = "Shoot";
         private const float FlopCharacterAngle = 90f;
         private const float RaycastDistanceFromCamera = 10f;
+        
+        private EventManager _eventManager;
 
         private void Awake()
         {
@@ -39,6 +42,10 @@ namespace Kosta.Player
         private void Start()
         {
             _playerController = ServiceLocator.Resolve<PlayerController>();
+            _eventManager = ServiceLocator.Resolve<EventManager>();
+
+            _eventManager.OnTimeIsUp += () => { _attackAllowed = false; };
+            _eventManager.OnRestartRound += () => { _attackAllowed = true; };
         }
 
         private void Update()
@@ -62,7 +69,7 @@ namespace Kosta.Player
 
         private void TryShoot()
         {
-            if (_cooling) return;
+            if (_cooling || !_attackAllowed) return;
             SetDotsColor(Color.red);
             RaycastShot();
         }

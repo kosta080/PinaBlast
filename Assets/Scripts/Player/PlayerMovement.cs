@@ -15,8 +15,8 @@ namespace Kosta.Player
         [SerializeField] public Collider2D _feetCollider;
         [SerializeField] private float _maxVerticalSpeed = 10f;
         private PickingManager _pickingManager;
-        
-        
+
+        private bool _movementAllowed = true;
         private bool _isGrounded = true;
 
         enum CharacterAnimations
@@ -26,11 +26,16 @@ namespace Kosta.Player
         
         private CharacterAnimations _currentAnimation = CharacterAnimations.Idle;
         private PlayerController _playerController;
+        private EventManager _eventManager;
         
         private void Start()
         {
             _playerController = ServiceLocator.Resolve<PlayerController>();
             _pickingManager = ServiceLocator.Resolve<PickingManager>();
+            _eventManager = ServiceLocator.Resolve<EventManager>();
+
+            _eventManager.OnFinalSpawnFinished += () => { _movementAllowed = false;};
+            _eventManager.OnRestartRound += () => { _movementAllowed = true;};
         }
         
         void Update()
@@ -91,6 +96,7 @@ namespace Kosta.Player
 
         private void RunRight()
         {
+            if (!_movementAllowed) return;
             transform.position += Vector3.right * (_runSpeed * Time.deltaTime);
             if (!_isGrounded) return;
             TriggerAnimation(CharacterAnimations.Run);

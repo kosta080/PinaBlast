@@ -19,7 +19,7 @@ namespace Kosta.Items
 
         private IEnumerator Decay()
         {
-            yield return new WaitForSeconds(1.5f);
+            yield return new WaitForSeconds(PickableData.DecayTime);
             Destroy(gameObject);
         }
     }
