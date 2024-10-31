@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using Infra;
 using Kosta.Controls;
@@ -77,6 +76,7 @@ namespace Kosta.Player
             if (_cooling || !_attackAllowed || !_buttonReleased) return;
             SetDotsColor(Color.red);
             RaycastShot();
+            _eventManager.AfterPlayerShot?.Invoke();
         }
 
         private void RaycastShot()
@@ -93,6 +93,7 @@ namespace Kosta.Player
             foreach (var hit in hits)
             {
                 if (hit.collider.CompareTag(GlobalValues.TagPlayer)) continue;
+                if (hit.collider.CompareTag(GlobalValues.TagPickable)) continue;
 
                 var damageable = hit.collider.GetComponent<IDamageable>();
                 if (damageable != null)
