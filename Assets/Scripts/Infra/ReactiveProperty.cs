@@ -1,6 +1,6 @@
 using System;
 
-namespace Kor.Infra
+namespace Kosta.Infra
 {
     public class ReactiveProperty<T>
     {

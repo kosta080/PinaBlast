@@ -1,5 +1,5 @@
 ﻿using System.Threading.Tasks;
-using Kor.Infra;
+using Kosta.Infra;
 using UnityEngine;
 
 namespace Kosta.Timer

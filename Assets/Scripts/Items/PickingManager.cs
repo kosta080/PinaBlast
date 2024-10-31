@@ -1,5 +1,5 @@
-﻿using Kor.Balance;
-using Kor.Infra;
+﻿using Kosta.Balance;
+using Kosta.Infra;
 using UnityEngine;
 
 namespace Kosta.Items

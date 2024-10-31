@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Kor.Tools
+namespace Kosta.Tools
 {
     public class RequireReferenceAttribute : PropertyAttribute
     {

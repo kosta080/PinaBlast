@@ -1,4 +1,4 @@
-﻿using Kor.Infra;
+﻿using Kosta.Infra;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;

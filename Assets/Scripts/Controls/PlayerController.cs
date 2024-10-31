@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using Kor.Infra;
+using Kosta.Infra;
 using UnityEngine;
 
 namespace Kosta.Controls

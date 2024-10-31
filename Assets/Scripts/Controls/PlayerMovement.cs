@@ -1,8 +1,8 @@
-using Kor.Infra;
+using Kosta.Infra;
 using UnityEngine;
 using UnityEngine.InputSystem;
 /*
-namespace Kor.Controls
+namespace Kosta.Controls
 {
     //TODO remove this class !
     public class PlayerMovement : MonoBehaviour

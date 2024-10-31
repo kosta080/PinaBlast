@@ -1,6 +1,6 @@
 ﻿using Kosta.Controls;
 using UnityEngine;
-using Kor.Infra;
+using Kosta.Infra;
 using Kosta.Timer;
 
 namespace Controls

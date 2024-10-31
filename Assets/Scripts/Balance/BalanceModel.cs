@@ -1,6 +1,6 @@
-using Kor.Infra;
+using Kosta.Infra;
 
-namespace Kor.Balance
+namespace Kosta.Balance
 {
     public class BalanceModel
     {

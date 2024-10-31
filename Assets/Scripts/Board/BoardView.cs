@@ -1,9 +1,9 @@
 using System.Collections.Generic;
-using Kor.Infra;
-using Kor.Tools;
+using Kosta.Infra;
+using Kosta.Tools;
 using UnityEngine;
 
-namespace Kor.Board
+namespace Kosta.Board
 {
     public class BoardView : MonoBehaviour
     {

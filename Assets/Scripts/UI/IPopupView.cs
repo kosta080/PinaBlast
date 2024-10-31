@@ -1,4 +1,4 @@
-﻿namespace Kor.UI
+﻿namespace Kosta.UI
 {
     public interface IPopupView
     {

@@ -1,7 +1,7 @@
-﻿using Kor.Infra;
+﻿using Kosta.Infra;
 using UnityEngine;
 
-namespace Kor.Board
+namespace Kosta.Board
 {
     public class GameManager : MonoBehaviour
     {

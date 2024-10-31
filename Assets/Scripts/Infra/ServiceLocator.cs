@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Kor.Infra
+namespace Kosta.Infra
 {
     public static class ServiceLocator
     {

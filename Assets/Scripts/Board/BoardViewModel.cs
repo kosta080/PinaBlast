@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using UnityEngine;
 
-namespace Kor.Board
+namespace Kosta.Board
 {
     public class BoardViewModel
     {

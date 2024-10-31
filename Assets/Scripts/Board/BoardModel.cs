@@ -1,5 +1,5 @@
 ﻿
-namespace Kor.Board
+namespace Kosta.Board
 {
     public class BoardModel
     {

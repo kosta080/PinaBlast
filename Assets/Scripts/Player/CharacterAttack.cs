@@ -2,7 +2,7 @@ using System.Collections;
 using Infra;
 using Kosta.Controls;
 using UnityEngine;
-using Kor.Infra;
+using Kosta.Infra;
 
 namespace Kosta.Player
 {

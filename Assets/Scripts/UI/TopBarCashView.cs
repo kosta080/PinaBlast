@@ -1,9 +1,9 @@
-﻿using Kor.Balance;
-using Kor.Infra;
+﻿using Kosta.Balance;
+using Kosta.Infra;
 using TMPro;
 using UnityEngine;
 
-namespace Kor.UI
+namespace Kosta.UI
 {
     public class TopBarCashView : MonoBehaviour
     {

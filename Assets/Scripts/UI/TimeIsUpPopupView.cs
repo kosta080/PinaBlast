@@ -1,8 +1,8 @@
 ﻿using Infra;
-using Kor.Infra;
+using Kosta.Infra;
 using UnityEngine;
 
-namespace Kor.UI
+namespace Kosta.UI
 {
     public class TimeIsUpPopupView : PopupView
     {

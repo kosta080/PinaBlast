@@ -1,4 +1,4 @@
-﻿namespace Kor.Board
+﻿namespace Kosta.Board
 {
     public enum CellState
     {

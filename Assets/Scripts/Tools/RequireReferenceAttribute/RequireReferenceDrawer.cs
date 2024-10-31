@@ -2,7 +2,7 @@
 using UnityEditor;
 using UnityEngine;
 
-namespace Kor.Tools
+namespace Kosta.Tools
 {
     [CustomPropertyDrawer(typeof(RequireReferenceAttribute))]
     public class RequireReferenceDrawer : PropertyDrawer

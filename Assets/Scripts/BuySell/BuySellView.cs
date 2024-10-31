@@ -1,9 +1,9 @@
-using Kor.Infra;
-using Kor.Tools;
+using Kosta.Infra;
+using Kosta.Tools;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Kor.BuySell
+namespace Kosta.BuySell
 {
     public class BuySellView : MonoBehaviour
     {

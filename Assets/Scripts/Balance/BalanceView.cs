@@ -1,9 +1,9 @@
-using Kor.Infra;
-using Kor.Tools;
+using Kosta.Infra;
+using Kosta.Tools;
 using TMPro;
 using UnityEngine;
 
-namespace Kor.Balance
+namespace Kosta.Balance
 {
     public class BalanceView : MonoBehaviour 
     {

@@ -1,4 +1,4 @@
-using Kor.Infra;
+using Kosta.Infra;
 using Kosta.Player;
 using UnityEngine;
 using UnityEngine.EventSystems;

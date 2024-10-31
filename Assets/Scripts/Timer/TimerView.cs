@@ -1,5 +1,5 @@
 ﻿using System;
-using Kor.Infra;
+using Kosta.Infra;
 using TMPro;
 using UnityEngine;
 

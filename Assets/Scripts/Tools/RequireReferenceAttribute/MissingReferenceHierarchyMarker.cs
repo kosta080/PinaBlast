@@ -6,7 +6,7 @@ using System.Reflection;
 using UnityEditor;
 using UnityEngine;
 
-namespace Kor.Tools
+namespace Kosta.Tools
 {
     [InitializeOnLoad]
     public class MissingReferenceHierarchyMarker

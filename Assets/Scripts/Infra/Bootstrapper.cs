@@ -1,10 +1,10 @@
 ﻿using UnityEngine;
-using Kor.Infra;
-using Kor.Balance;
-using Kor.Board;
-using Kor.BuySell;
+using Kosta.Infra;
+using Kosta.Balance;
+using Kosta.Board;
+using Kosta.BuySell;
 
-namespace Kor.Initialization
+namespace Kosta.Initialization
 {
     public class Bootstrapper : MonoBehaviour
     {

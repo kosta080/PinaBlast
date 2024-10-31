@@ -1,4 +1,4 @@
-﻿using Kor.UI;
+﻿using Kosta.UI;
 
 namespace Kosta.Round
 {

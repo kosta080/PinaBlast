@@ -1,6 +1,6 @@
 using Infra;
-using Kor.Balance;
-using Kor.Infra;
+using Kosta.Balance;
+using Kosta.Infra;
 using UnityEngine;
 using Kosta.Controls;
 using Kosta.Items;

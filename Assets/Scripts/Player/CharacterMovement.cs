@@ -1,7 +1,7 @@
 using Infra;
 using Kosta.Controls;
 using UnityEngine;
-using Kor.Infra;
+using Kosta.Infra;
 using Kosta.Items;
 
 namespace Kosta.Player

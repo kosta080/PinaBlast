@@ -1,7 +1,7 @@
 using TMPro;
 using UnityEngine;
 
-namespace Kor.UI
+namespace Kosta.UI
 {
     public class PopupView : MonoBehaviour , IPopupView
     {

@@ -1,7 +1,7 @@
-﻿using Kor.Balance;
-using Kor.Infra;
+﻿using Kosta.Balance;
+using Kosta.Infra;
 
-namespace Kor.BuySell
+namespace Kosta.BuySell
 {
     public class BuySellViewModel
     {
