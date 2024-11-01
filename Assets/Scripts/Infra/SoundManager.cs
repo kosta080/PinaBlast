@@ -1,4 +1,4 @@
-﻿using System;
+﻿using System.Threading.Tasks;
 using Kosta.Infra;
 using UnityEngine;
 
@@ -13,8 +13,10 @@ namespace Infra
         [SerializeField] private AudioClip _shoot;
         [SerializeField] private AudioClip _startMusic;
         [SerializeField] private AudioClip _pinataVoice;
-
+        [SerializeField] private AudioClip _winningSound;
+        
         EventManager _eventManager;
+        
         private void Start()
         {
             _eventManager = ServiceLocator.Resolve<EventManager>();
@@ -23,7 +25,9 @@ namespace Infra
             _eventManager.AfterPickEnergy += PlayPickEnergy;
             _eventManager.AfterPlayerShot += PlayShot;
             _eventManager.OnRestartRound += PlayStartMusic;
+            
             _eventManager.OnPinataExploded += PlayPinataVoice;
+            _eventManager.OnPinataExploded += PlayWinningSound;
         }
 
         private void PlayStartMusic()
@@ -43,9 +47,18 @@ namespace Infra
             _audioSource.PlayOneShot(_pickCoin);
         }
 
-        private void PlayPinataVoice()
+        //Play the _pinataVoice twice
+        private async void PlayPinataVoice()
         {
             _audioSource.PlayOneShot(_pinataVoice);
+            float clipDuration = _pinataVoice.length;
+            await Task.Delay((int)clipDuration*1000);
+            _audioSource.PlayOneShot(_pinataVoice);
+        }
+        
+        private void PlayWinningSound()
+        {
+            _audioSource.PlayOneShot(_winningSound);
         }
         
         private void OnDestroy()
@@ -55,6 +68,7 @@ namespace Infra
             _eventManager.AfterPlayerShot -= PlayShot;
             _eventManager.OnRestartRound -= PlayStartMusic;
             _eventManager.OnPinataExploded -= PlayPinataVoice;
+            _eventManager.OnPinataExploded -= PlayWinningSound;
         }
     }
 }
