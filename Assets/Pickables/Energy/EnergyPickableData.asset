@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: EnergyPickableData
   m_EditorClassIdentifier: 
   CashAmount: 0
-  EnergyAmount: 10
+  EnergyAmount: 1
   DecayTime: 6
