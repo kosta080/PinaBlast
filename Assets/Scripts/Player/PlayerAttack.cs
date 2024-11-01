@@ -3,6 +3,7 @@ using Infra;
 using Kosta.Controls;
 using UnityEngine;
 using Kosta.Infra;
+using Kosta.Pinata;
 
 namespace Kosta.Player
 {

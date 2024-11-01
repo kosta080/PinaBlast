@@ -4,7 +4,7 @@ using Kosta.Infra;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-namespace Kosta
+namespace Kosta.Pinata
 {
     public class PickableSpawner : MonoBehaviour
     {

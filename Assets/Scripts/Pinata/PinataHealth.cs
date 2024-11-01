@@ -2,7 +2,7 @@
 using Kosta.Round;
 using UnityEngine;
 
-namespace Kosta
+namespace Kosta.Pinata
 {
     public class PinataHealth
     {

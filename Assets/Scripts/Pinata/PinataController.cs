@@ -1,8 +1,7 @@
-using System;
 using Kosta.Infra;
 using UnityEngine;
 
-namespace Kosta
+namespace Kosta.Pinata
 {
     public class PinataController : MonoBehaviour, IDamageable
     {
@@ -26,13 +25,6 @@ namespace Kosta
             _eventManager.OnRestartRound += OnPinataRestart;
         }
 
-        private void OnCollisionEnter2D(Collision2D other)
-        {
-            var tool = other.transform.gameObject.GetComponent<IPinataTool>();
-            if (tool == null) return;
-            tool.DoEffect(_rigidbody2D);
-        }
-
         public void TakeDamage(int damage, Vector3 transformPosition, float shockForce)
         {
             Vector3 awayDir = transform.position - transformPosition;
@@ -53,10 +45,10 @@ namespace Kosta
         {
             _pinataAnimator.SetTrigger(PinataExploadAnimation);
         }
-    }
 
-    public interface IDamageable
-    {
-        public void TakeDamage(int damage, Vector3 transformPosition, float shockForce);
+        public void TakeDamage(int damage, System.Numerics.Vector3 transformPosition, float shockForce)
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

@@ -1,10 +1,11 @@
+using UnityEngine;
 using Infra;
 using Kosta.Balance;
 using Kosta.Infra;
-using UnityEngine;
 using Kosta.Controls;
 using Kosta.Items;
 using Kosta.Timer;
+using Kosta.Pinata;
 
 namespace Kosta
 {
@@ -24,7 +25,6 @@ namespace Kosta
         {
             Application.targetFrameRate = GlobalValues.targetFrameRate;
             QualitySettings.vSyncCount = GlobalValues.vSyncCount;
-            
         }
         
     }
